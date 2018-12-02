@@ -58,4 +58,8 @@ class RelationTreeView{
 		}
 		return -1;
 	}
+	getNodes(){
+		var arrTrs = $("#" + this.container).find("tr");
+		// for( var i = 0; i < )
+	}
 }
