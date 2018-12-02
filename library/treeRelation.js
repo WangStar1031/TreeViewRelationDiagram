@@ -3,6 +3,7 @@ class TreeRelationControl{
 		this.container = _container;
 		this.c = document.getElementById("myCanvas");
 		this.active = -1;
+		this.tempRelation = null;
 	}
 	setRelations(_arrRelations){
 		this.arrRelations = _arrRelations;
@@ -26,6 +27,19 @@ class TreeRelationControl{
 			ctx.lineWidth=3;
 			ctx.stroke();
 		}
+		if( this.tempRelation != null){
+			var lPos = this.tempRelation.lPos;
+			var rPos = this.tempRelation.rPos;
+			ctx.beginPath();
+			ctx.moveTo(0, lPos);
+			ctx.lineTo(200, rPos);
+			ctx.strokeStyle = '#00ff00';
+			ctx.lineWidth=3;
+			ctx.stroke();
+		}
+	}
+	setTemplate(_temp = null){
+		this.tempRelation = _temp;
 	}
 	calcDistance(x0, y0, x1, y1, x2, y2){
 		var upper = Math.abs((y2 - y1) * x0 - (x2 - x1) * y0 + x2 * y1 - y2 * x1);

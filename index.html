@@ -194,6 +194,14 @@
 	function mouseOver(_this){
 		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id"))
 			return;
+
+		if( selectedItem ){
+			var id = $(_this).find("td").eq(0).attr("id");
+			var lPos = lTree.getTopPosition(selectedId) * 22 + 11 - $("#lDiv").scrollTop();
+			var rPos = rTree.getTopPosition(id) * 22 + 11 - $("#rDiv").scrollTop();
+			cRelation.setTemplate({lPos:lPos, rPos:rPos});
+			cRelation.drawRelations();
+		}
 		$(_this).css("background-color", "#cdf");
 	}
 	function mouseLeave(_this){
@@ -208,16 +216,20 @@
 		console.log(id);
 	}
 	function mouseUp(_this){
-		selectedItem = null;
 		$("#lDiv table tr").css("background-color", "white");
 		$("#rDiv table tr").css("background-color", "white");
-
-		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id"))
+		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id")){
+			selectedItem = null;
+			selectedId = -1;
 			return;
+		}
 		var id = $(_this).find("td").eq(0).attr("id");
 		console.log(id);
 		relationJson.push({lSide:selectedId, rSide:id});
+		cRelation.setTemplate();
 		reDrawRelation();
+		selectedItem = null;
+		selectedId = -1;
 	}
 </script>
 </html>
