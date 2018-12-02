@@ -10,16 +10,16 @@
 </style>
 <body>
 	<div style="width: 100%; min-width: 550px; border: 1px solid black;">
-		<div id="lDiv" onscroll="reDrawRelation()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
+		<div id="lDiv" onscroll="scrollFunc()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
 		</div>
 		<div id="relation" style="float: left; border-left: 1px solid black; border-right: 1px solid black; width: 200px;">
 			<canvas id="myCanvas" width="200" height="300"></canvas>
 		</div>
-		<div id="rDiv" onscroll="reDrawRelation()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
+		<div id="rDiv" onscroll="scrollFunc()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
 		</div>
 		<div style="clear: both;"></div>
 	</div>
-	<button onclick="testClicked()">test</button><br>
+	<button onclick="ResetClicked()">Reset</button><br>
 <!-- <p>&rarr;<i class="arrow right"></i></p> -->
 <textarea id="lTreeJson" rows="15" style="float: left; width: calc((100% - 200px) / 2 - 10px);">
 [
@@ -113,6 +113,11 @@
 	var rTree = new RelationTreeView("rDiv");
 	var cRelation = new TreeRelationControl("myCanvas");
 	var canvas = document.getElementById("myCanvas");
+
+	var rJson;
+	var relationJson;
+	var lJson;
+
 	canvas.addEventListener('click', function(event){
 		var left = this.offsetLeft;
 		var top = this.offsetTop;
@@ -122,15 +127,18 @@
 		cRelation.activeRelation(x, y);
 	});
 	document.addEventListener('keyup', function(event){
-		if( event.key == "Delete"){
-			cRelation.removeRelation();
+		if( event.key == "Delete" && $(canvas).focus()){
+			var index = cRelation.removeRelation();
+			if( index != -1)
+				relationJson.splice(index, 1);
 		}
 	});
-	function CanvasClicked(event){
+	function scrollFunc(){
+		reDrawRelation();
 	}
 	function reDrawRelation(){
 		try{
-			var relationJson = JSON.parse($("#relationJson").val());
+			// var relationJson = JSON.parse($("#relationJson").val());
 			var lTop = $("#lDiv").scrollTop();
 			var rTop = $("#rDiv").scrollTop();
 			var arrRelations = [];
@@ -144,35 +152,32 @@
 			}
 			cRelation.setRelations(arrRelations);
 			cRelation.drawRelations();
-			// var c = document.getElementById("myCanvas");
-			// var ctx = c.getContext("2d");
-			// ctx.clearRect(0, 0, c.width, c.height);
-			// ctx.beginPath();
-			// for( var i = 0; i < arrRelations.length; i++){
-			// 	ctx.moveTo(0, arrRelations[i].lPos);
-			// 	ctx.lineTo(200, arrRelations[i].rPos);
-			// }
-			// ctx.stroke();
 		} catch(e){
 			alert("error relation json format\n" + e);
 		}
 	}
-	function testClicked(){
+	function ResetClicked(){
 		try{
-			var lJson = JSON.parse($("#lTreeJson").val());
+			lJson = JSON.parse($("#lTreeJson").val());
 			lTree.setNodes(lJson);
 			lTree.drawNodes();
 		}catch(e){
 			alert("error left json format\n" + e);
 		}
 		try{
-			var rJson = JSON.parse($("#rTreeJson").val());
+			rJson = JSON.parse($("#rTreeJson").val());
 			rTree.setNodes(rJson);
 			rTree.drawNodes();
 		}catch(e){
 			alert("error right json format\n" + e);
 		}
-		reDrawRelation();
+		try{
+			relationJson = JSON.parse($("#relationJson").val());
+			reDrawRelation();
+		} catch(e){
+			alert("error relation json format\n" + e);
+		}
+		// reDrawRelation();
 	}
 </script>
 </html>

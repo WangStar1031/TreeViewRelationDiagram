@@ -46,9 +46,11 @@ class TreeRelationControl{
 	}
 	removeRelation(){
 		if( this.active == -1)
-			return;
+			return -1;
+		var retVal = this.active;
 		this.arrRelations.splice(this.active, 1);
 		this.active = -1;
 		this.drawRelations();
+		return retVal;
 	}
 }
