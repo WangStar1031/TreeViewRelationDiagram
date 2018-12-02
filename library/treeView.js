@@ -20,12 +20,12 @@ class RelationTreeView{
 		this.allNodes = _nodes;
 	}
 	insertNode(_node, _parentCount){
-		this.strHtml += "<tr>";
-			this.strHtml += "<td>";
+		this.strHtml += "<tr onmousedown='mouseDown(this)' onmouseup='mouseUp(this)' onmouseenter='mouseOver(this)' onmouseleave='mouseLeave(this)'>";
+			this.strHtml += "<td id='" + _node.id + "'>";
 				for( var i = 0; i < _parentCount; i++){
-					this.strHtml += "<span class='parentSpace'>&nbsp&nbsp</span>";
+					this.strHtml += "<span class='parentSpace'>&nbsp&nbsp&nbsp</span>";
 				}
-				this.strHtml += "<span class='id'>" + _node.id + "</span>";
+				this.strHtml += "<span class='id'>" + _node.id + " : </span>";
 				this.strHtml += "<span class='name'>" + _node.name + "</span>";
 				this.strHtml += "<span class='context'>" + _node.context + "</span>";
 			this.strHtml += "</td>";
@@ -48,4 +48,26 @@ class RelationTreeView{
 		this.strHtml += "</table>";
 		$("#" + this.container).html( this.strHtml);
 	}
+	getTopPosition(_id){
+		var curTd = $("#" + this.container).find("td[id="+_id+"]").eq(0);
+		var arrTds = $("#" + this.container + " td");
+		for( var i = 0; i < arrTds.length; i++){
+			if( arrTds.eq(i).attr("id") == _id){
+				return i;
+			}
+		}
+		return -1;
+	}
+}
+
+function mouseOver(_this){
+	$(_this).css("background-color", "#d1e1fd");
+}
+function mouseLeave(_this){
+	$(_this).css("background-color", "white");
+}
+function mouseDown(_this){
+}
+function mouseUp(_this){
+
 }

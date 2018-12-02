@@ -1,10 +1,15 @@
 table.treeViewTable{
 	width: 100%;
 }
-.parentSpace{
-	width: 1em;
+table.treeViewTable td, table.treeViewTable td span{
+	line-height: 20px;
+	margin: 0px;
+	padding: 0px;
 }
-.context{
+table.treeViewTable .id, table.treeViewTable .name, table.treeViewTable .context, table.treeViewTable .parentSpace{
+	user-select: none;
+}
+table.treeViewTable .context{
 	float: right;
     user-select: none;
 }

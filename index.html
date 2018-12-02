@@ -4,22 +4,24 @@
 	<title>Tree node relatioship</title>
 </head>
 <style type="text/css">
-
+	#lDiv, #rDiv{
+		overflow: auto;
+	}
 </style>
 <body>
-	<div style="width: 100%; min-width: 550px;">
-		<div id="lDiv" style="float: left; width: calc((100% - 150px) / 2 - 1px); height: 300px;">
+	<div style="width: 100%; min-width: 550px; border: 1px solid black;">
+		<div id="lDiv" onscroll="reDrawRelation()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
 		</div>
-		<div id="relation" style="float: left; border: 1px solid black; width: 150px;">
-			<canvas width="150" height="300"></canvas>
+		<div id="relation" style="float: left; border-left: 1px solid black; border-right: 1px solid black; width: 200px;">
+			<canvas id="myCanvas" width="200" height="300"></canvas>
 		</div>
-		<div id="rDiv" style="float: left; width: calc((100% - 150px) / 2 - 1px);">
+		<div id="rDiv" onscroll="reDrawRelation()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
 		</div>
 		<div style="clear: both;"></div>
 	</div>
 	<button onclick="testClicked()">test</button><br>
 <!-- <p>&rarr;<i class="arrow right"></i></p> -->
-<textarea id="lTreeJson" rows="15" style="float: left; width: calc((100% - 150px) / 2 - 10px);">
+<textarea id="lTreeJson" rows="15" style="float: left; width: calc((100% - 200px) / 2 - 10px);">
 [
 	{
 		"id": 1, "name": "text_1", "context": "context_1", "children": [
@@ -27,45 +29,150 @@
 				{"id": 4, "name": "text_4", "context": "context_4", "children": []},
 				{"id": 5, "name": "text_5", "context": "context_5", "children": []}
 			]},
-			{"id": 3, "name": "text_3", "context": "context_3"}
+			{"id": 3, "name": "text_3", "context": "context_3"},
+			{"id": 6, "name": "text_3", "context": "context_3"}
+		]
+	},
+	{
+		"id": 11, "name": "text_1", "context": "context_1", "children": [
+			{"id": 12, "name": "text_2", "context": "context_2", "children": [
+				{"id": 14, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 15, "name": "text_5", "context": "context_5", "children": []}
+			]},
+			{"id": 13, "name": "text_3", "context": "context_3"},
+			{"id": 16, "name": "text_3", "context": "context_3"}
+		]
+	},
+	{
+		"id": 21, "name": "text_1", "context": "context_1", "children": [
+			{"id": 22, "name": "text_2", "context": "context_2", "children": [
+				{"id": 24, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 25, "name": "text_5", "context": "context_5", "children": []}
+			]},
+			{"id": 23, "name": "text_3", "context": "context_3"},
+			{"id": 26, "name": "text_3", "context": "context_3"}
 		]
 	}
 ]
+
 </textarea>
-<textarea id="relationJson" rows="15" style="float: left; width: 150px;">
-	
+<textarea id="relationJson" rows="15" style="float: left; width: 200px;">
+[
+	{"lSide":1, "rSide":1},
+	{"lSide":1, "rSide":2},
+	{"lSide":3, "rSide":4},
+	{"lSide":4, "rSide":5},
+	{"lSide":6, "rSide":5},
+	{"lSide":6, "rSide":3},
+	{"lSide":26, "rSide":3}
+]
+
 </textarea>
-<textarea id="rTreeJson" rows="15" style="float: left; width: calc((100% - 150px) / 2 - 10px);">
+<textarea id="rTreeJson" rows="15" style="float: left; width: calc((100% - 200px) / 2 - 10px);">
 [
 	{
 		"id": 1, "name": "text_1", "context": "context_1", "children": [
 			{"id": 2, "name": "text_2", "context": "context_2", "children": [
-				{"id": 4, "name": "text_4", "context": "context_4"},
-				{"id": 5, "name": "text_5", "context": "context_5"}
+				{"id": 4, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 5, "name": "text_5", "context": "context_5", "children": []}
 			]},
-			{"id": 3, "name": "text_3", "context": "context_3"}
+			{"id": 3, "name": "text_3", "context": "context_3"},
+			{"id": 6, "name": "text_3", "context": "context_3"}
+		]
+	},
+	{
+		"id": 11, "name": "text_1", "context": "context_1", "children": [
+			{"id": 12, "name": "text_2", "context": "context_2", "children": [
+				{"id": 14, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 15, "name": "text_5", "context": "context_5", "children": []}
+			]},
+			{"id": 13, "name": "text_3", "context": "context_3"},
+			{"id": 16, "name": "text_3", "context": "context_3"}
+		]
+	},
+	{
+		"id": 21, "name": "text_1", "context": "context_1", "children": [
+			{"id": 22, "name": "text_2", "context": "context_2", "children": [
+				{"id": 24, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 25, "name": "text_5", "context": "context_5", "children": []}
+			]},
+			{"id": 23, "name": "text_3", "context": "context_3"},
+			{"id": 26, "name": "text_3", "context": "context_3"}
 		]
 	}
 ]
+
 </textarea>
 </body>
 <link rel="stylesheet" type="text/css" href="library/treeView.css">
 <script type="text/javascript" src="library/jquery.min.js"></script>
 <script type="text/javascript" src="library/treeView.js"></script>
+<script type="text/javascript" src="library/treeRelation.js"></script>
 <script type="text/javascript">
 	var lTree = new RelationTreeView("lDiv");
 	var rTree = new RelationTreeView("rDiv");
+	var cRelation = new TreeRelationControl("myCanvas");
+	var canvas = document.getElementById("myCanvas");
+	canvas.addEventListener('click', function(event){
+		var left = this.offsetLeft;
+		var top = this.offsetTop;
+		var x = event.pageX - left;
+		var y = event.pageY - top;
+		console.log(x + ":" + y);
+		cRelation.activeRelation(x, y);
+	});
+	document.addEventListener('keyup', function(event){
+		if( event.key == "Delete"){
+			cRelation.removeRelation();
+		}
+	});
+	function CanvasClicked(event){
+	}
+	function reDrawRelation(){
+		try{
+			var relationJson = JSON.parse($("#relationJson").val());
+			var lTop = $("#lDiv").scrollTop();
+			var rTop = $("#rDiv").scrollTop();
+			var arrRelations = [];
+			for( var i = 0; i < relationJson.length; i++){
+				var relation = relationJson[i];
+				var lVal = lTree.getTopPosition(relation.lSide);
+				var rVal = rTree.getTopPosition(relation.rSide);
+				var lPos = lVal * 22 + 11 - lTop;
+				var rPos = rVal * 22 + 11 - rTop;
+				arrRelations.push({lPos:lPos, rPos:rPos});
+			}
+			cRelation.setRelations(arrRelations);
+			cRelation.drawRelations();
+			// var c = document.getElementById("myCanvas");
+			// var ctx = c.getContext("2d");
+			// ctx.clearRect(0, 0, c.width, c.height);
+			// ctx.beginPath();
+			// for( var i = 0; i < arrRelations.length; i++){
+			// 	ctx.moveTo(0, arrRelations[i].lPos);
+			// 	ctx.lineTo(200, arrRelations[i].rPos);
+			// }
+			// ctx.stroke();
+		} catch(e){
+			alert("error relation json format\n" + e);
+		}
+	}
 	function testClicked(){
 		try{
 			var lJson = JSON.parse($("#lTreeJson").val());
 			lTree.setNodes(lJson);
 			lTree.drawNodes();
+		}catch(e){
+			alert("error left json format\n" + e);
+		}
+		try{
 			var rJson = JSON.parse($("#rTreeJson").val());
 			rTree.setNodes(rJson);
 			rTree.drawNodes();
 		}catch(e){
-			alert("error json format\n" + e);
+			alert("error right json format\n" + e);
 		}
+		reDrawRelation();
 	}
 </script>
 </html>
