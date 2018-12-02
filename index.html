@@ -23,86 +23,95 @@
 <!-- <p>&rarr;<i class="arrow right"></i></p> -->
 <textarea id="lTreeJson" rows="15" style="float: left; width: calc((100% - 200px) / 2 - 10px);">
 [
-	{
-		"id": 1, "name": "text_1", "context": "context_1", "children": [
-			{"id": 2, "name": "text_2", "context": "context_2", "children": [
-				{"id": 4, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 5, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 3, "name": "text_3", "context": "context_3"},
-			{"id": 6, "name": "text_3", "context": "context_3"}
-		]
-	},
-	{
-		"id": 11, "name": "text_1", "context": "context_1", "children": [
-			{"id": 12, "name": "text_2", "context": "context_2", "children": [
-				{"id": 14, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 15, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 13, "name": "text_3", "context": "context_3"},
-			{"id": 16, "name": "text_3", "context": "context_3"}
-		]
-	},
-	{
-		"id": 21, "name": "text_1", "context": "context_1", "children": [
-			{"id": 22, "name": "text_2", "context": "context_2", "children": [
-				{"id": 24, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 25, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 23, "name": "text_3", "context": "context_3"},
-			{"id": 26, "name": "text_3", "context": "context_3"}
-		]
-	}
+  {
+    "id": 1, "name": "text_1", "context": "context_1", "children": [
+      {"id": 2, "name": "text_2", "context": "context_2", "children": [
+        {"id": 4, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 5, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 3, "name": "text_3", "context": "context_3"},
+      {"id": 6, "name": "text_3", "context": "context_3"}
+    ]
+  },
+  {
+    "id": 11, "name": "text_1", "context": "context_1", "children": [
+      {"id": 12, "name": "text_2", "context": "context_2", "children": [
+        {"id": 14, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 15, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 13, "name": "text_3", "context": "context_3"},
+      {"id": 16, "name": "text_3", "context": "context_3"}
+    ]
+  },
+  {
+    "id": 21, "name": "text_1", "context": "context_1", "children": [
+      {"id": 22, "name": "text_2", "context": "context_2", "children": [
+        {"id": 24, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 25, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 23, "name": "text_3", "context": "context_3"},
+      {"id": 26, "name": "text_3", "context": "context_3"}
+    ]
+  }
 ]
 
 </textarea>
 <textarea id="relationJson" rows="15" style="float: left; width: 200px;">
 [
-	{"lSide":1, "rSide":1},
-	{"lSide":1, "rSide":2},
-	{"lSide":3, "rSide":4},
-	{"lSide":4, "rSide":5},
-	{"lSide":6, "rSide":5},
-	{"lSide":6, "rSide":3},
-	{"lSide":26, "rSide":3}
+  {"lSide":1, "rSide":1},
+  {"lSide":1, "rSide":2},
+  {"lSide":3, "rSide":4},
+  {"lSide":4, "rSide":5},
+  {"lSide":6, "rSide":5},
+  {"lSide":6, "rSide":3},
+  {"lSide":26, "rSide":3}
 ]
 
 </textarea>
 <textarea id="rTreeJson" rows="15" style="float: left; width: calc((100% - 200px) / 2 - 10px);">
 [
-	{
-		"id": 1, "name": "text_1", "context": "context_1", "children": [
-			{"id": 2, "name": "text_2", "context": "context_2", "children": [
-				{"id": 4, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 5, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 3, "name": "text_3", "context": "context_3"},
-			{"id": 6, "name": "text_3", "context": "context_3"}
-		]
-	},
-	{
-		"id": 11, "name": "text_1", "context": "context_1", "children": [
-			{"id": 12, "name": "text_2", "context": "context_2", "children": [
-				{"id": 14, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 15, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 13, "name": "text_3", "context": "context_3"},
-			{"id": 16, "name": "text_3", "context": "context_3"}
-		]
-	},
-	{
-		"id": 21, "name": "text_1", "context": "context_1", "children": [
-			{"id": 22, "name": "text_2", "context": "context_2", "children": [
-				{"id": 24, "name": "text_4", "context": "context_4", "children": []},
-				{"id": 25, "name": "text_5", "context": "context_5", "children": []}
-			]},
-			{"id": 23, "name": "text_3", "context": "context_3"},
-			{"id": 26, "name": "text_3", "context": "context_3"}
-		]
-	}
+  {
+    "id": 1, "name": "text_1", "context": "context_1", "children": [
+      {"id": 2, "name": "text_2", "context": "context_2", "children": [
+        {"id": 4, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 5, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 3, "name": "text_3", "context": "context_3"},
+      {"id": 6, "name": "text_3", "context": "context_3"}
+    ]
+  },
+  {
+    "id": 11, "name": "text_1", "context": "context_1", "children": [
+      {"id": 12, "name": "text_2", "context": "context_2", "children": [
+        {"id": 14, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 15, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 13, "name": "text_3", "context": "context_3"},
+      {"id": 16, "name": "text_3", "context": "context_3"}
+    ]
+  },
+  {
+    "id": 21, "name": "text_1", "context": "context_1", "children": [
+      {"id": 22, "name": "text_2", "context": "context_2", "children": [
+        {"id": 24, "name": "text_4", "context": "context_4", "children": []},
+        {"id": 25, "name": "text_5", "context": "context_5", "children": []}
+      ]},
+      {"id": 23, "name": "text_3", "context": "context_3"},
+      {"id": 26, "name": "text_3", "context": "context_3"}
+    ]
+  }
 ]
 
 </textarea>
+<div style="clear: both;"></div>
+<br>
+<h3>Usage</h3>
+<p>1. Press "Reset" button.</p>
+<p>&nbsp&nbsp Then you can see the demo graph.</p>
+<p>2. Scroll left or right view.</p>
+<p>&nbsp&nbsp Then you can see relation arrows moved according scroll.</p>
+<p>3. Select relation arrow and press "Delete" key.</p>
+<p>&nbsp&nbsp Then you can see arrow is selected with red color and removed.</p>
 </body>
 <link rel="stylesheet" type="text/css" href="library/treeView.css">
 <script type="text/javascript" src="library/jquery.min.js"></script>
@@ -178,6 +187,37 @@
 			alert("error relation json format\n" + e);
 		}
 		// reDrawRelation();
+	}
+
+	var selectedItem;
+	var selectedId = -1;
+	function mouseOver(_this){
+		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id"))
+			return;
+		$(_this).css("background-color", "#cdf");
+	}
+	function mouseLeave(_this){
+		if( selectedItem == _this)
+			return;
+		$(_this).css("background-color", "white");
+	}
+	function mouseDown(_this){
+		selectedItem = _this;
+		var id = $(_this).find("td").eq(0).attr("id");
+		selectedId = id;
+		console.log(id);
+	}
+	function mouseUp(_this){
+		selectedItem = null;
+		$("#lDiv table tr").css("background-color", "white");
+		$("#rDiv table tr").css("background-color", "white");
+
+		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id"))
+			return;
+		var id = $(_this).find("td").eq(0).attr("id");
+		console.log(id);
+		relationJson.push({lSide:selectedId, rSide:id});
+		reDrawRelation();
 	}
 </script>
 </html>

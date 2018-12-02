@@ -59,15 +59,3 @@ class RelationTreeView{
 		return -1;
 	}
 }
-
-function mouseOver(_this){
-	$(_this).css("background-color", "#d1e1fd");
-}
-function mouseLeave(_this){
-	$(_this).css("background-color", "white");
-}
-function mouseDown(_this){
-}
-function mouseUp(_this){
-
-}
