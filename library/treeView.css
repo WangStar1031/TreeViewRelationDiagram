@@ -1,0 +1,10 @@
+table.treeViewTable{
+	width: 100%;
+}
+.parentSpace{
+	width: 1em;
+}
+.context{
+	float: right;
+    user-select: none;
+}

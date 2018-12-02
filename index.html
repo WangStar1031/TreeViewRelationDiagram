@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tree node relatioship</title>
+</head>
+<style type="text/css">
+
+</style>
+<body>
+	<div style="width: 100%; min-width: 550px;">
+		<div id="lDiv" style="float: left; width: calc((100% - 150px) / 2 - 1px); height: 300px;">
+		</div>
+		<div id="relation" style="float: left; border: 1px solid black; width: 150px;">
+			<canvas width="150" height="300"></canvas>
+		</div>
+		<div id="rDiv" style="float: left; width: calc((100% - 150px) / 2 - 1px);">
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<button onclick="testClicked()">test</button><br>
+<!-- <p>&rarr;<i class="arrow right"></i></p> -->
+<textarea id="lTreeJson" rows="15" style="float: left; width: calc((100% - 150px) / 2 - 10px);">
+[
+	{
+		"id": 1, "name": "text_1", "context": "context_1", "children": [
+			{"id": 2, "name": "text_2", "context": "context_2", "children": [
+				{"id": 4, "name": "text_4", "context": "context_4", "children": []},
+				{"id": 5, "name": "text_5", "context": "context_5", "children": []}
+			]},
+			{"id": 3, "name": "text_3", "context": "context_3"}
+		]
+	}
+]
+</textarea>
+<textarea id="relationJson" rows="15" style="float: left; width: 150px;">
+	
+</textarea>
+<textarea id="rTreeJson" rows="15" style="float: left; width: calc((100% - 150px) / 2 - 10px);">
+[
+	{
+		"id": 1, "name": "text_1", "context": "context_1", "children": [
+			{"id": 2, "name": "text_2", "context": "context_2", "children": [
+				{"id": 4, "name": "text_4", "context": "context_4"},
+				{"id": 5, "name": "text_5", "context": "context_5"}
+			]},
+			{"id": 3, "name": "text_3", "context": "context_3"}
+		]
+	}
+]
+</textarea>
+</body>
+<link rel="stylesheet" type="text/css" href="library/treeView.css">
+<script type="text/javascript" src="library/jquery.min.js"></script>
+<script type="text/javascript" src="library/treeView.js"></script>
+<script type="text/javascript">
+	var lTree = new RelationTreeView("lDiv");
+	var rTree = new RelationTreeView("rDiv");
+	function testClicked(){
+		lTree.setNodes(JSON.parse($("#lTreeJson").val()));
+		lTree.drawNodes();
+		rTree.setNodes(JSON.parse($("#rTreeJson").val()));
+		rTree.drawNodes();
+	}
+</script>
+</html>
