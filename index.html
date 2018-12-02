@@ -56,10 +56,16 @@
 	var lTree = new RelationTreeView("lDiv");
 	var rTree = new RelationTreeView("rDiv");
 	function testClicked(){
-		lTree.setNodes(JSON.parse($("#lTreeJson").val()));
-		lTree.drawNodes();
-		rTree.setNodes(JSON.parse($("#rTreeJson").val()));
-		rTree.drawNodes();
+		try{
+			var lJson = JSON.parse($("#lTreeJson").val());
+			lTree.setNodes(lJson);
+			lTree.drawNodes();
+			var rJson = JSON.parse($("#rTreeJson").val());
+			rTree.setNodes(rJson);
+			rTree.drawNodes();
+		}catch(e){
+			alert("error json format\n" + e);
+		}
 	}
 </script>
 </html>
