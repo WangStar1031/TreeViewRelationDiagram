@@ -2,12 +2,13 @@
 <html>
 <head>
 	<title>Tree node relatioship</title>
+	<style type="text/css">
+		#lDiv, #rDiv{
+			overflow: auto;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="library/treeView.css">
 </head>
-<style type="text/css">
-	#lDiv, #rDiv{
-		overflow: auto;
-	}
-</style>
 <body>
 	<div style="width: 100%; min-width: 550px; border: 1px solid black;">
 		<div id="lDiv" onscroll="scrollFunc()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
@@ -114,11 +115,9 @@
 <p>&nbsp&nbsp Then you can see relation arrows moved according scroll.</p>
 <p>3. Select relation arrow and press "Delete" key.</p>
 <p>&nbsp&nbsp Then you can see arrow is selected with red color and removed.</p> -->
-</body>
-<link rel="stylesheet" type="text/css" href="library/treeView.css">
 <script type="text/javascript" src="library/jquery.min.js"></script>
-<script type="text/javascript" src="library/treeView.js"></script>
-<script type="text/javascript" src="library/treeRelation.js"></script>
+<script type="text/javascript" src="library/treeView_.js"></script>
+<script type="text/javascript" src="library/treeRelation_.js"></script>
 <script type="text/javascript">
 	var lTree = new RelationTreeView("lDiv");
 	var rTree = new RelationTreeView("rDiv");
@@ -218,7 +217,7 @@
 		selectedId = parseInt(id);
 	}
 	function mouseUp(_this){
-		cRelation.setTemplate();
+		cRelation.setTemplate(null);
 		$("#lDiv table tr").css("background-color", "white");
 		$("#rDiv table tr").css("background-color", "white");
 		if( $(selectedItem).parent().parent().parent().attr("id") == $(_this).parent().parent().parent().attr("id")){
@@ -233,4 +232,5 @@
 		selectedId = -1;
 	}
 </script>
+</body>
 </html>

@@ -8,8 +8,12 @@ table.treeViewTable td, table.treeViewTable td span{
 }
 table.treeViewTable .id, table.treeViewTable .name, table.treeViewTable .context, table.treeViewTable .parentSpace{
 	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
 }
 table.treeViewTable .context{
 	float: right;
-    user-select: none;
+	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
 }
