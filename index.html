@@ -160,7 +160,7 @@
 			var top = (left * 1 + top * 1) / 2;
 			$("#infoDlg").css("top", event.pageY+"px");
 			$("#infoDlg").css("left", event.pageX+"px");
-			console.log(relationJson[activeRelation].desc1);
+			// console.log(relationJson[activeRelation].desc1);
 			$("#infoDlg").find("input[name=desc1]").val(relationJson[activeRelation].desc1);
 			$("#infoDlg").find("input[name=desc2]").val(relationJson[activeRelation].desc2);
 			$("#infoDlg").removeClass("HideItem");
@@ -180,7 +180,6 @@
 	}
 	function reDrawRelation(){
 		try{
-			// var relationJson = JSON.parse($("#relationJson").val());
 			var lTop = $("#lDiv").scrollTop();
 			var rTop = $("#rDiv").scrollTop();
 			var arrRelations = [];
@@ -259,7 +258,13 @@
 			return;
 		}
 		var id = parseInt( $(_this).find("td").eq(0).attr("id"));
-		relationJson.push({lSide:selectedId, rSide: id});
+		relationJson.push({lSide:selectedId, rSide: id, desc1:"", desc2:""});
+		activeRelation = relationJson.length - 1;
+		$("#infoDlg").css("top", "100px");
+		$("#infoDlg").css("left", "60%");
+		$("#infoDlg").find("input[name=desc1]").val("");
+		$("#infoDlg").find("input[name=desc2]").val("");
+		$("#infoDlg").removeClass("HideItem");
 		reDrawRelation();
 		selectedItem = null;
 		selectedId = -1;
