@@ -215,7 +215,7 @@
 	function mouseDown(_this){
 		selectedItem = _this;
 		var id = $(_this).find("td").eq(0).attr("id");
-		selectedId = id;
+		selectedId = parseInt(id);
 	}
 	function mouseUp(_this){
 		cRelation.setTemplate();
@@ -226,8 +226,8 @@
 			selectedId = -1;
 			return;
 		}
-		var id = $(_this).find("td").eq(0).attr("id");
-		relationJson.push({lSide:selectedId, rSide:id});
+		var id = parseInt( $(_this).find("td").eq(0).attr("id"));
+		relationJson.push({lSide:selectedId, rSide: id});
 		reDrawRelation();
 		selectedItem = null;
 		selectedId = -1;
