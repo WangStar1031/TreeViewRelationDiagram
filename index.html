@@ -6,8 +6,14 @@
 		#lDiv, #rDiv{
 			overflow: auto;
 		}
+		.HideItem{
+			display: none;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="library/treeView.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 </head>
 <body>
 	<div style="width: 100%; min-width: 550px; border: 1px solid black;">
@@ -15,6 +21,20 @@
 		</div>
 		<div id="relation" style="float: left; border-left: 1px solid black; border-right: 1px solid black; width: 200px;">
 			<canvas id="myCanvas" width="200" height="300"></canvas>
+			<div id="infoDlg" class="HideItem" style="position: absolute; background-color: #cfd7ea;padding: 10px; border-radius: 5px; top: 0px;left: calc((100% - 250px) / 2);">
+				<table>
+					<tr>
+						<td>Desc1</td>
+						<td><input type="text" name="desc1"></td>
+					</tr>
+					<tr>
+						<td>Desc2</td>
+						<td><input type="text" name="desc2"></td>
+					</tr>
+				</table>
+				<button onclick="btnOKClicked()">OK</button>
+				<button onclick="btnCancelClicked()">Cancel</button>
+			</div>
 		</div>
 		<div id="rDiv" onscroll="scrollFunc()" style="float: left; width: calc((100% - 200px) / 2 - 1px); height: 300px;">
 		</div>
@@ -61,13 +81,13 @@
 </textarea>
 <textarea id="relationJson" rows="15" style="float: left; width: 200px;">
 [
-  {"lSide":1, "rSide":1},
-  {"lSide":1, "rSide":2},
-  {"lSide":3, "rSide":4},
-  {"lSide":4, "rSide":5},
-  {"lSide":6, "rSide":5},
-  {"lSide":6, "rSide":3},
-  {"lSide":26, "rSide":3}
+  {"lSide":1, "rSide":1, "desc1":"", "desc2":""},
+  {"lSide":1, "rSide":2, "desc1":"", "desc2":""},
+  {"lSide":3, "rSide":4, "desc1":"", "desc2":""},
+  {"lSide":4, "rSide":5, "desc1":"", "desc2":""},
+  {"lSide":6, "rSide":5, "desc1":"", "desc2":""},
+  {"lSide":6, "rSide":3, "desc1":"", "desc2":""},
+  {"lSide":26, "rSide":3, "desc1":"", "desc2":""}
 ]
 
 </textarea>
@@ -107,14 +127,8 @@
 
 </textarea>
 <div style="clear: both;"></div>
+
 <br>
-<!-- <h3>Usage</h3>
-<p>1. Press "Reset" button.</p>
-<p>&nbsp&nbsp Then you can see the demo graph.</p>
-<p>2. Scroll left or right view.</p>
-<p>&nbsp&nbsp Then you can see relation arrows moved according scroll.</p>
-<p>3. Select relation arrow and press "Delete" key.</p>
-<p>&nbsp&nbsp Then you can see arrow is selected with red color and removed.</p> -->
 <script type="text/javascript" src="library/jquery.min.js"></script>
 <script type="text/javascript" src="library/treeView_.js"></script>
 <script type="text/javascript" src="library/treeRelation_.js"></script>
@@ -127,13 +141,32 @@
 	var rJson;
 	var relationJson;
 	var lJson;
-
+	var activeRelation = -1;
+	function btnCancelClicked(){
+		$("#infoDlg").addClass("HideItem");
+	}
+	function btnOKClicked(){
+		relationJson[activeRelation].desc1 = $("#infoDlg").find("input[name=desc1]").val();
+		relationJson[activeRelation].desc2 = $("#infoDlg").find("input[name=desc2]").val();
+		$("#infoDlg").addClass("HideItem");
+	}
 	canvas.addEventListener('click', function(event){
 		var left = this.offsetLeft;
 		var top = this.offsetTop;
 		var x = event.pageX - left;
 		var y = event.pageY - top;
-		cRelation.activeRelation(x, y);
+		activeRelation = cRelation.activeRelation(x, y);
+		if( activeRelation != -1){
+			var top = (left * 1 + top * 1) / 2;
+			$("#infoDlg").css("top", event.pageY+"px");
+			$("#infoDlg").css("left", event.pageX+"px");
+			console.log(relationJson[activeRelation].desc1);
+			$("#infoDlg").find("input[name=desc1]").val(relationJson[activeRelation].desc1);
+			$("#infoDlg").find("input[name=desc2]").val(relationJson[activeRelation].desc2);
+			$("#infoDlg").removeClass("HideItem");
+		} else{
+			$("#infoDlg").addClass("HideItem");
+		}
 	});
 	document.addEventListener('keyup', function(event){
 		if( event.key == "Delete" && $(canvas).focus()){
@@ -162,7 +195,7 @@
 			cRelation.setRelations(arrRelations);
 			cRelation.drawRelations();
 		} catch(e){
-			alert("error relation json format\n" + e);
+			alert("error occured in relation drawing.\n" + e);
 		}
 	}
 	function ImportJson(){

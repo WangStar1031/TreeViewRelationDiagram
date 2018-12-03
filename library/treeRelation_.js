@@ -74,6 +74,7 @@ TreeRelationControl.prototype.activeRelation = function(_x, _y){
 		}
 	}
 	this.drawRelations();
+	return this.active;
 }
 TreeRelationControl.prototype.removeRelation = function(){
 	if( this.active == -1)
