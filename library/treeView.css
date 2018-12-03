@@ -6,6 +6,9 @@ table.treeViewTable td, table.treeViewTable td span{
 	margin: 0px;
 	padding: 0px;
 }
+table.treeViewTable td{
+	padding: 0px 5px;
+}
 table.treeViewTable .id, table.treeViewTable .name, table.treeViewTable .context, table.treeViewTable .parentSpace{
 	user-select: none;
 	-ms-user-select: none;
@@ -16,4 +19,30 @@ table.treeViewTable .context{
 	user-select: none;
 	-ms-user-select: none;
 	-webkit-user-select: none;
+}
+table.treeViewTable td{
+	/*border-top: 1px solid #aaa;*/
+	border-bottom: 1px solid #aaa;
+}
+table.treeViewTable td.parentNode .id:before{
+	width: 15px;
+	height: 15px;
+	background-image: url(parentNode.png);
+	background-size: 16px 20px;
+	display: inline-block;
+	content: "";
+	position: relative;
+	padding: 0px 5px;
+	background-repeat: no-repeat;
+}
+table.treeViewTable td.childNode .id:before{
+	width: 15px;
+	height: 15px;
+	background-image: url(childNode.png);
+	background-size: 16px 20px;
+	display: inline-block;
+	content: "";
+	position: relative;
+	padding: 0px 5px;
+	background-repeat: no-repeat;
 }

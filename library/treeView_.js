@@ -22,9 +22,21 @@ RelationTreeView.prototype.resetNodes = function(_nodes){
 }
 RelationTreeView.prototype.insertNode = function(_node, _parentCount){
 	this.strHtml += "<tr onmousedown='mouseDown(this)' onmouseup='mouseUp(this)' onmouseenter='mouseOver(this)' onmouseleave='mouseLeave(this)'>";
-		this.strHtml += "<td id='" + _node.id + "'>";
+	var isParent = false;
+	if( _node.children){
+		if( _node.children.length){
+			isParent = true;
+		}
+	}
+		this.strHtml += "<td id='" + _node.id + "'";
+		if( isParent){
+			this.strHtml += " class='parentNode'";
+		} else{
+			this.strHtml += " class='childNode'";
+		}
+		this.strHtml += ">";
 			for( var i = 0; i < _parentCount; i++){
-				this.strHtml += "<span class='parentSpace'>&nbsp&nbsp&nbsp</span>";
+				this.strHtml += "<span class='parentSpace'>&nbsp&nbsp&nbsp&nbsp</span>";
 			}
 			this.strHtml += "<span class='id'>" + _node.id + " : </span>";
 			this.strHtml += "<span class='name'>" + _node.name + "</span>";
