@@ -9,7 +9,9 @@ class TreeRelationControl{
 		this.arrRelations = _arrRelations;
 	}
 	drawLine( _ctx, _cL, _cR){
-		_ctx.moveTo(0, _cL);
+		_ctx.moveTo(2, _cL);
+		_ctx.arc(2, _cL, 2, 0, Math.PI * 2);
+		_ctx.moveTo(1, _cL);
 		_ctx.lineTo(10, _cL);
 		_ctx.moveTo(10, _cL);
 		_ctx.lineTo(190, _cR);
