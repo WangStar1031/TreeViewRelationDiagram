@@ -35,7 +35,6 @@ class RelationTreeView{
 		for( var i = 0; i < _arrNodes.length; i++){
 			var curNode = _arrNodes[i];
 			this.insertNode(curNode, _parentCount);
-			console.log(curNode.id + ":" + curNode.name + ":" + _parentCount);
 			if( curNode.children){
 				if( curNode.children.length)
 					this.travelNodes(curNode.children, _parentCount + 1);

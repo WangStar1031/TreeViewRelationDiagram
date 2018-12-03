@@ -8,21 +8,33 @@ class TreeRelationControl{
 	setRelations(_arrRelations){
 		this.arrRelations = _arrRelations;
 	}
+	drawLine( _ctx, _cL, _cR){
+		_ctx.moveTo(0, _cL);
+		_ctx.lineTo(10, _cL);
+		_ctx.moveTo(10, _cL);
+		_ctx.lineTo(190, _cR);
+		_ctx.moveTo(190, _cR);
+		_ctx.lineTo(200, _cR);
+		_ctx.moveTo(200, _cR);
+		_ctx.lineTo(195, _cR - 5);
+		_ctx.moveTo(200, _cR);
+		_ctx.lineTo(195, _cR + 5);
+	}
 	drawRelations(){
 		var ctx = this.c.getContext("2d");
 		ctx.clearRect(0, 0, this.c.width, this.c.height);
 		ctx.beginPath();
 		for( var i = 0; i < this.arrRelations.length; i++){
-			ctx.moveTo(0, this.arrRelations[i].lPos);
-			ctx.lineTo(200, this.arrRelations[i].rPos);
+			this.drawLine(ctx, this.arrRelations[i].lPos, this.arrRelations[i].rPos);
 		}
 		ctx.strokeStyle = '#000000';
 		ctx.lineWidth=1;
 		ctx.stroke();
 		if( this.active != -1){
 			ctx.beginPath();
-			ctx.moveTo(0, this.arrRelations[this.active].lPos);
-			ctx.lineTo(200, this.arrRelations[this.active].rPos);
+			this.drawLine( ctx, this.arrRelations[this.active].lPos, this.arrRelations[this.active].rPos);
+			// ctx.moveTo(0, this.arrRelations[this.active].lPos);
+			// ctx.lineTo(200, this.arrRelations[this.active].rPos);
 			ctx.strokeStyle = '#ff0000';
 			ctx.lineWidth=3;
 			ctx.stroke();
@@ -31,8 +43,9 @@ class TreeRelationControl{
 			var lPos = this.tempRelation.lPos;
 			var rPos = this.tempRelation.rPos;
 			ctx.beginPath();
-			ctx.moveTo(0, lPos);
-			ctx.lineTo(200, rPos);
+			this.drawLine( ctx, lPos, rPos);
+			// ctx.moveTo(0, lPos);
+			// ctx.lineTo(200, rPos);
 			ctx.strokeStyle = '#00ff00';
 			ctx.lineWidth=3;
 			ctx.stroke();
